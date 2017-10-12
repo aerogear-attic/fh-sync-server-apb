@@ -1,0 +1,15 @@
+- name: "Create fh-sync-server resources"
+  shell: "oc new-app -f {{ fhsync_deploy_template }}"
+  
+- name: "Expose route for fh-sync-server"
+  shell: "oc expose service fh-sync-server --port={{ fhsync_port }}"
+
+- name: "Retrieve route to fh-sync-server"
+  shell: "oc get routes fh-sync-server -n '{{ namespace }}' | grep -v NAME | awk '{print $2}'"
+  register: fhsync_route
+
+
+- name: Create fh-sync-server secret file
+ template:
+    src: secret.yml.j2
+    dest: /tmp/secret.yaml
