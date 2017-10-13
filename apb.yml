@@ -16,11 +16,14 @@ plans:
     metadata: {}
     parameters:
     - name: MONGODB_ADMIN_PASSWORD
-     description: Password for the MongoDB admin user. This value will be generated if not specified.
+      description: Password for the MongoDB admin user. This value will be generated if not specified.
       pattern: "[a-zA-Z0-9]{40}"
+      type: string
     - name: MONGODB_USER_NAME
       description: Username for the created MongoDB user.
-      value: "sync-user"
+      default: "sync-user"
+      type: string
     - name: MONGODB_USER_PASSWORD
       description: Password for the created MongoDB user. This value will be generated if not specified.
       pattern: "[a-zA-Z0-9]{40}"
+      type: string
