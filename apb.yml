@@ -8,7 +8,7 @@ tags:
 metadata:
   displayName: FeedHenry Sync Server
   console.openshift.io/iconClass: font-icon icon-nodejs
-  serviceName: fhsync
+  serviceName: fh-sync-server
 plans:
   - name: default
     description: Deploy FH Sync-Server
