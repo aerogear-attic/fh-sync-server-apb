@@ -1,8 +1,8 @@
 - name: "Create fh-sync-server resources"
-  shell: "oc new-app -f {{ fhsync_deploy_template }}"
-  
+  shell: "oc new-app -f {{ fhsync_deploy_template }} -n {{ namespace }}"
+
 - name: "Retrieve route to fh-sync-server"
-  shell: "oc get routes fh-sync-server -n '{{ namespace }}' | grep -v NAME | awk '{print $2}'"
+  shell: "oc get routes fh-sync-server -n {{ namespace }} | grep -v NAME | awk '{print $2}'"
   register: fhsync_route
 
 - name: "Create fh-sync-server secret yaml file"
@@ -11,4 +11,4 @@
     dest: /tmp/secret.yaml
 
 - name: "Create FH Sync-server secret"
-  shell: "oc create -f /tmp/secret.yaml"
+  shell: "oc create -f /tmp/secret.yaml -n {{ namespace }}"
