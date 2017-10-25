@@ -1,14 +1,14 @@
 - name: delete fh-sync-server resource
-  command: oc delete {{ item }} fh-sync-server
+  command: oc delete {{ item }} fh-sync-server -n {{ namespace }}
   with_items:
     - service
     - route
 - name: delete sync-redis resoures
-  command: oc delete {{ item }} redis
+  command: oc delete {{ item }} redis -n {{ namespace }}
   with_items:
     - service
 - name: delete sync-mongo resoures
-  command: oc delete {{ item }} mongodb
+  command: oc delete {{ item }} mongodb -n {{ namespace }}
   with_items:
     - service
     - secret

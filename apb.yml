@@ -1,5 +1,5 @@
+version: 1.0
 name: fh-sync-server-apb
-image: feedhenry/fh-sync-server-apb
 description: The FeedHenry Sync Server APB
 bindable: False
 async: optional
