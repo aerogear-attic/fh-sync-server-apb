@@ -1,6 +1,11 @@
-- name: "Create fh-sync-server resources"
-  shell: "oc new-app -f {{ fhsync_deploy_template }} -n {{ namespace }}"
+- name: "Create fh-sync-server deploy yaml file"
+  template:
+    src: deploy.yml.j2
+    dest: /tmp/deploy.yaml
 
+- name: "Create fh-sync-server resources"
+  shell: "oc new-app -f /tmp/deploy.yaml -n {{ namespace }}"
+  
 - name: "Retrieve route to fh-sync-server"
   shell: "oc get routes fh-sync-server -n {{ namespace }} | grep -v NAME | awk '{print $2}'"
   register: fhsync_route
