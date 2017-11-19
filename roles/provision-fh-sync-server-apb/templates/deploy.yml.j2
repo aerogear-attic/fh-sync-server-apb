@@ -33,6 +33,7 @@ objects:
     labels:
       app: fh-sync-server
       template: fh-sync-server
+      mobile: enabled
   spec:
     ports:
     - name: fh-sync-server
@@ -88,6 +89,7 @@ objects:
     labels:
       app: fh-sync-server
       template: fh-sync-server
+      mobile: enabled
     name: fh-sync-server
   spec:
     replicas: 1
@@ -292,6 +294,7 @@ objects:
     labels:
       app: fh-sync-server
       template: fh-sync-server
+      mobile: enabled
   spec:
     port:
       targetPort: fh-sync-server
