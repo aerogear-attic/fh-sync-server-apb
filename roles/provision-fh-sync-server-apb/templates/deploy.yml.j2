@@ -31,7 +31,7 @@ objects:
   metadata:
     name: fh-sync-server
     annotations:
-      mcp/prometheus: "enabled"
+      org.feedhenry.mcp/prometheus: "plain"
     labels:
       app: fh-sync-server
       template: fh-sync-server
@@ -123,7 +123,7 @@ objects:
               secretKeyRef:
                 key: database-password
                 name: mongodb
-          image: pbrookes/fh-sync-server:{{ fhsync_version }}
+          image: feedhenry/fh-sync-server:{{ fhsync_version }}
           imagePullPolicy: Always
           ports:
           - containerPort: 3000
