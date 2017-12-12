@@ -33,5 +33,5 @@ apb_release:
 		@echo 'tagging for $(LAST_COMMIT)'
 		git tag -a $(VERSION) $(LAST_COMMIT) -m "signing tag" && git push $(ORIGIN) $(VERSION)
     else
-	    $(error Aborting release process, since local files are modified)
+		$(error Aborting release process, since local files are modified)
     endif
