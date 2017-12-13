@@ -9,6 +9,7 @@ metadata:
   displayName: FeedHenry Sync Server
   console.openshift.io/iconClass: font-icon icon-nodejs
   serviceName: fh-sync-server
+  integrations: keycloak,apiKeys
 plans:
   - name: default
     description: Deploy FH Sync-Server
