@@ -7,9 +7,11 @@ tags:
   - mobile-service
 metadata:
   displayName: FeedHenry Sync Server
-  console.openshift.io/iconClass: font-icon icon-nodejs
   serviceName: fh-sync-server
   integrations: keycloak,apiKeys
+  imageUrl: "https://avatars3.githubusercontent.com/u/772226?s=200&v=4"
+  documentationUrl: "http://feedhenry.org/projects/#data-synchronization"
+  providerDisplayName: "Red Hat, Inc."
 plans:
   - name: default
     description: Deploy FH Sync-Server
