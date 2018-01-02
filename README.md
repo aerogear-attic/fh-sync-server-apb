@@ -1,8 +1,8 @@
 # FH-Sync Server APB
 
-[![](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/feedhenry/fh-sync-server-apb/)
-[![Docker Stars](https://img.shields.io/docker/stars/feedhenry/fh-sync-server-apb.svg)](https://registry.hub.docker.com/v2/repositories/feedhenry/fh-sync-server-apb/stars/count/)
-[![Docker pulls](https://img.shields.io/docker/pulls/feedhenry/fh-sync-server-apb.svg)](https://registry.hub.docker.com/v2/repositories/feedhenry/fh-sync-server-apb/)
+[![](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/aerogearcatalog/fh-sync-server-apb/)
+[![Docker Stars](https://img.shields.io/docker/stars/aerogearcatalog/fh-sync-server-apb.svg)](https://registry.hub.docker.com/v2/repositories/aerogearcatalog/fh-sync-server-apb/stars/count/)
+[![Docker pulls](https://img.shields.io/docker/pulls/aerogearcatalog/fh-sync-server-apb.svg)](https://registry.hub.docker.com/v2/repositories/aerogearcatalog/fh-sync-server-apb/)
 [![License](https://img.shields.io/:license-Apache2-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
 ## Local Development
