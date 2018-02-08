@@ -56,6 +56,7 @@ objects:
     labels:
       app: fh-sync-server
       template: fh-sync-server
+      mobile: enabled
     name: mongodb
   spec:
     ports:
@@ -75,6 +76,7 @@ objects:
     labels:
       app: fh-sync-server
       template: fh-sync-server
+      mobile: enabled
   spec:
     ports:
     - port: 6379
@@ -147,6 +149,7 @@ objects:
     labels:
       app: fh-sync-server
       template: fh-sync-server
+      mobile: enabled
     name: mongodb
   spec:
     replicas: 1
@@ -317,6 +320,7 @@ objects:
     labels:
       app: fh-sync-server
       template: fh-sync-server
+      mobile: enabled
     name: mongodb
   type: Opaque
 
@@ -327,6 +331,7 @@ objects:
     labels:
       app: fh-sync-server
       template: fh-sync-server
+      mobile: enabled
   spec:
     accessModes:
     - ReadWriteOnce
