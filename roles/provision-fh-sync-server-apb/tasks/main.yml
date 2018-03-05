@@ -7,6 +7,10 @@
   shell: oc label serviceinstance '{{ service_instance_name.stdout }}' serviceName=fh-sync-server --namespace={{ namespace }}
   when: _apb_service_instance_id is defined
 
+- name: "Label the service instance with mobile enabled"
+  shell: oc label serviceinstance '{{ service_instance_name.stdout }}' mobile=enabled --namespace={{ namespace }}
+  when: _apb_service_instance_id is defined  
+
 - name: "Create fh-sync-server deploy yaml file"
   template:
     src: deploy.yml.j2
