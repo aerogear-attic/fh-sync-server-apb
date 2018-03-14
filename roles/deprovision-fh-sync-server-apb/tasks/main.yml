@@ -33,6 +33,12 @@
   - fh-sync-server
   - mongodb
 
+- name: delete config maps
+  k8s_v1_config_map:
+    name: 'fh-sync-server'
+    namespace: '{{ namespace }}'
+    state: absent
+
 - name: delete persistent volume claims
   k8s_v1_persistent_volume_claim:
     name: '{{ item }}'
