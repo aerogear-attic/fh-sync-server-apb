@@ -23,10 +23,24 @@
   shell: "oc get routes fh-sync-server -n {{ namespace }} | grep -v NAME | awk '{print $2}'"
   register: fhsync_route
 
-- name: "Create fh-sync-server secret yaml file"
-  template:
-    src: secret.yml.j2
-    dest: /tmp/secret.yaml
+- k8s_v1_secret:
+    name: fh-sync-server
+    namespace: '{{ namespace }}'
+    labels:
+      mobile: enabled
+      serviceName: fh-sync-server
+    string_data:
+      name: "{{ fhsync_secret_name }}"
+      type: "{{ fhsync_secret_name }}"
+      uri: https://{{ fhsync_route.stdout }}
 
-- name: "Create FH Sync-server secret"
-  shell: "oc create -f /tmp/secret.yaml -n {{ namespace }}"
+- k8s_v1_config_map:
+    name: fh-sync-server
+    namespace: '{{ namespace }}'
+    labels:
+      mobile: enabled
+      serviceName: fh-sync-server
+    data:
+      name: "{{ fhsync_secret_name }}"
+      type: "{{ fhsync_secret_name }}"
+      uri: https://{{ fhsync_route.stdout }}
