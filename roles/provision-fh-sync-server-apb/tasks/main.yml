@@ -1,16 +1,3 @@
-- name: "Get the name of the service instance"
-  shell: oc get serviceinstance --namespace={{ namespace }} -o jsonpath='{.items[?(@.spec.externalID=="{{ _apb_service_instance_id }}")].metadata.name}'
-  when: _apb_service_instance_id is defined
-  register: service_instance_name
-
-- name: "Label the service instance with the service name"
-  shell: oc label serviceinstance '{{ service_instance_name.stdout }}' serviceName=fh-sync-server --namespace={{ namespace }}
-  when: _apb_service_instance_id is defined
-
-- name: "Label the service instance with mobile enabled"
-  shell: oc label serviceinstance '{{ service_instance_name.stdout }}' mobile=enabled --namespace={{ namespace }}
-  when: _apb_service_instance_id is defined  
-
 - name: "Create fh-sync-server deploy yaml file"
   template:
     src: deploy.yml.j2
@@ -23,24 +10,32 @@
   shell: "oc get routes fh-sync-server -n {{ namespace }} | grep -v NAME | awk '{print $2}'"
   register: fhsync_route
 
-- k8s_v1_secret:
-    name: fh-sync-server
-    namespace: '{{ namespace }}'
-    labels:
-      mobile: enabled
-      serviceName: fh-sync-server
-    string_data:
-      name: "{{ fhsync_secret_name }}"
-      type: "{{ fhsync_secret_name }}"
-      uri: https://{{ fhsync_route.stdout }}
+- name: "Create fh-sync-server secret template"
+  template:
+    src: secret.yml.j2
+    dest: /tmp/secret.yaml
+  when: _apb_service_instance_id is defined
 
-- k8s_v1_config_map:
-    name: fh-sync-server
-    namespace: '{{ namespace }}'
-    labels:
-      mobile: enabled
-      serviceName: fh-sync-server
-    data:
-      name: "{{ fhsync_secret_name }}"
-      type: "{{ fhsync_secret_name }}"
-      uri: https://{{ fhsync_route.stdout }}
+- name: "Create fh-sync-server secret template for testing"
+  template:
+    src: secret_test.yml.j2
+    dest: /tmp/secret.yaml
+  when: _apb_service_instance_id is not defined
+
+- name: "Create fh-sync-server secret"
+  shell: "oc create -f /tmp/secret.yaml -n {{ namespace }}"  
+
+- name: "Create fh-sync-server configmap template"
+  template:
+    src: configmap.yml.j2
+    dest: /tmp/configmap.yaml
+  when: _apb_service_instance_id is defined
+
+- name: "Create fh-sync-server configmap template for testing"
+  template:
+    src: configmap_test.yml.j2
+    dest: /tmp/configmap.yaml
+  when: _apb_service_instance_id is not defined
+
+- name: Create fh-sync-server config map
+  shell: oc create -f /tmp/configmap.yaml -n {{ namespace }}

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fh-sync-server
+  namespace: {{ namespace }}
+  labels:
+    mobile: enabled
+    serviceName: fh-sync-server
+data:
+  type: {{ fhsync_secret_name }}
+  name: {{ fhsync_secret_name }}
+  uri: https://{{ fhsync_route.stdout }}
